@@ -1,0 +1,36 @@
+package br.com.cod3r.exerciciossb2.jdbc;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
+
+public class FabricaConexao {
+	
+	public static Connection getConexao() {
+		
+		try {
+			//Carregando as informações do metodo abaixo II(getProperties();)
+			Properties prop = getProperties();
+			//Informações vindo do arquivo conexo.properties
+			final String url = prop.getProperty("banco.url");
+			final String usuario = prop.getProperty("banco.usuario");
+			final String senha = prop.getProperty("banco.senha");
+			return DriverManager.getConnection(url, usuario, senha);
+		} catch (SQLException | IOException e) {
+			//System.out.println("Conexão não encontrada");
+			throw new RuntimeException(e);
+		}
+	}
+	//Metodo II
+	public static Properties getProperties() throws IOException {
+		Properties prop = new Properties();
+		String caminho = "/conexao.properties";
+		prop.load(FabricaConexao.class.getResourceAsStream(caminho));
+		return prop;
+	}
+	
+	
+	
+}
