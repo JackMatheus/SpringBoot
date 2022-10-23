@@ -1,9 +1,12 @@
 package br.com.cod3r.exerciciossb2.model.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Cliente {
@@ -12,8 +15,11 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int numIdentify;
 	private String nome;
-	private String conta;
+	//private String conta;
 	private String cpf;
+	
+	@OneToOne
+	private Conta conta;
 
 	public Cliente() {
 		super();
@@ -29,16 +35,23 @@ public class Cliente {
 		this.numIdentify = numIdentify;
 	}
 
-	public Cliente(String conta, String cpf) {
+	/*public Cliente(String conta, String cpf) {
 		super();
-		this.conta = conta;
+		this.conta = Conta;
 		this.cpf = cpf;
-	}
+	}*/
+	
+	public Cliente(String nome, String cpf) {
+		super();
+		this.nome = nome;
+		this.cpf = cpf;
+	}	
 	
 
 	public int getNumIdentify() {
 		return numIdentify;
 	}
+
 
 	public void setNumIdentify(int numIdentify) {
 		this.numIdentify = numIdentify;
@@ -52,13 +65,7 @@ public class Cliente {
 		this.nome = nome;
 	}
 
-	public String getConta() {
-		return conta;
-	}
 
-	public void setConta(String conta) {
-		this.conta = conta;
-	}
 
 	public String getCpf() {
 		return cpf;

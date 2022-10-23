@@ -23,7 +23,8 @@ public class AgenciaController {
 	
 	@GetMapping("/qualquer")
 	public Agencia obteAgencia() {
-		return new Agencia("Agencia teste"); 		
+		//return new Agencia("Agencia teste"); 
+		return null;
 	}
 	
 	@Autowired
@@ -31,7 +32,7 @@ public class AgenciaController {
 	//Recebendo @RequestParam do Header da URL
 	@PostMapping
 	public @ResponseBody Agencia novaAgencia(@RequestParam String nome) {
-		Agencia agencia = new Agencia(nome);
+		Agencia agencia = new Agencia();
 		agenciaRepository.save(agencia);
 		return agencia;
 	}
